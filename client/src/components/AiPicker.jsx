@@ -1,7 +1,43 @@
 import React from "react";
+import CustomButton from "./CustomButton.jsx";
 
-const AiPicker = () => {
-  return <div>AI</div>;
+const AiPicker = ({ prompt, setPrompt, generatingImg, handleSumbit }) => {
+  return (
+    <div className="aipicker-container">
+      <textarea
+        placeholder="Ask Ai..."
+        rows={5}
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+        className="aipicker-textarea"
+      />
+
+      <div className="flex flex-wrap gap-3">
+        {generatingImg ? (
+          <CustomButton
+            type="outline"
+            title="Asking AI..."
+            customStyles="text-xs"
+          />
+        ) : (
+          <>
+            <CustomButton
+              type="outline"
+              title="AI Logo"
+              handleClick={() => handleSumbit("logo")}
+              customStyles="text-xs"
+            />
+            <CustomButton
+              type="filled"
+              title="AI Full"
+              handleClick={() => handleSumbit("full")}
+              customStyles="text-xs"
+            />
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default AiPicker;
